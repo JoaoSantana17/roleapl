@@ -3,10 +3,6 @@ from typing import Optional, List
 from datetime import date, datetime
 
 
-# ─────────────────────────────────────────
-#  USUARIO
-# ─────────────────────────────────────────
-
 class UsuarioCreate(BaseModel):
     nome: str
     data_nascimento: Optional[date] = None
@@ -34,10 +30,6 @@ class UsuarioOut(BaseModel):
     class Config:
         from_attributes = True
 
-
-# ─────────────────────────────────────────
-#  ROLE (Evento/Rolê)
-# ─────────────────────────────────────────
 
 class RoleCreate(BaseModel):
     id_criador: int
@@ -73,9 +65,6 @@ class RoleOut(BaseModel):
         from_attributes = True
 
 
-# ─────────────────────────────────────────
-#  PARTICIPACAO
-# ─────────────────────────────────────────
 
 class ParticipacaoCreate(BaseModel):
     id_usuario: int
@@ -104,10 +93,6 @@ class ParticipacaoOut(BaseModel):
         from_attributes = True
 
 
-# ─────────────────────────────────────────
-#  PUBLICACAO
-# ─────────────────────────────────────────
-
 class PublicacaoCreate(BaseModel):
     id_usuario: int
     id_role: int
@@ -129,11 +114,6 @@ class PublicacaoOut(BaseModel):
     class Config:
         from_attributes = True
 
-
-# ─────────────────────────────────────────
-#  COMENTARIO
-# ─────────────────────────────────────────
-
 class ComentarioCreate(BaseModel):
     id_publicacao: int
     id_usuario: int
@@ -153,9 +133,6 @@ class ComentarioOut(BaseModel):
         from_attributes = True
 
 
-# ─────────────────────────────────────────
-#  NOTIFICACAO
-# ─────────────────────────────────────────
 
 class NotificacaoCreate(BaseModel):
     id_usuario: int
@@ -172,10 +149,6 @@ class NotificacaoOut(BaseModel):
     class Config:
         from_attributes = True
 
-
-# ─────────────────────────────────────────
-#  LOCALIZACAO
-# ─────────────────────────────────────────
 
 class LocalizacaoCreate(BaseModel):
     id_usuario: int
@@ -195,10 +168,6 @@ class LocalizacaoOut(BaseModel):
         from_attributes = True
 
 
-# ─────────────────────────────────────────
-#  AMIZADE
-# ─────────────────────────────────────────
-
 class AmizadeCreate(BaseModel):
     id_usuario_1: int
     id_usuario_2: int
@@ -217,10 +186,6 @@ class AmizadeOut(BaseModel):
     class Config:
         from_attributes = True
 
-
-# ─────────────────────────────────────────
-#  AUDITORIA (somente leitura)
-# ─────────────────────────────────────────
 
 class AuditoriaOut(BaseModel):
     id_auditoria: int
