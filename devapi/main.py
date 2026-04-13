@@ -231,4 +231,4 @@ def listar_auditoria(id_usuario: Optional[int] = None, skip: int = 0, limit: int
 
 @app.get("/", tags=["Root"])
 def root():
-    return {"mensagem": "🎉 Rolé API v2 — Oracle Database Cloud", "docs": "/docs"}
+    return {"mensagem": "Rolé API v2 — Oracle Database Cloud", "docs": "/docs"}
