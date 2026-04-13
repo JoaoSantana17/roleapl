@@ -25,9 +25,19 @@ def update_usuario(db: Session, id_usuario: int, data: schemas.UsuarioUpdate):
 def delete_usuario(db: Session, id_usuario: int):
     obj = get_usuario(db, id_usuario)
     if not obj: return False
-    db.delete(obj); db.commit()
+    # Deleta dependências antes
+    db.query(models.Amizade).filter(
+        (models.Amizade.id_usuario_1 == id_usuario) | (models.Amizade.id_usuario_2 == id_usuario)
+    ).delete(synchronize_session=False)
+    db.query(models.Participacao).filter(models.Participacao.id_usuario == id_usuario).delete(synchronize_session=False)
+    db.query(models.Notificacao).filter(models.Notificacao.id_usuario == id_usuario).delete(synchronize_session=False)
+    db.query(models.Localizacao).filter(models.Localizacao.id_usuario == id_usuario).delete(synchronize_session=False)
+    db.query(models.Comentario).filter(models.Comentario.id_usuario == id_usuario).delete(synchronize_session=False)
+    db.query(models.Publicacao).filter(models.Publicacao.id_usuario == id_usuario).delete(synchronize_session=False)
+    db.query(models.Role).filter(models.Role.id_criador == id_usuario).delete(synchronize_session=False)
+    db.delete(obj)
+    db.commit()
     return True
-
 
 def create_role(db: Session, data: schemas.RoleCreate):
     obj = models.Role(**data.model_dump())
